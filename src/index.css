@@ -1,0 +1,96 @@
+/* src/index.css */
+
+/* 
+  Tailwind v4: single import replaces the old three directives:
+  @tailwind base; @tailwind components; @tailwind utilities;
+*/
+@import "tailwindcss";
+
+/*
+  ============================================
+  DESIGN TOKENS — Our app's visual language
+  ============================================
+  These CSS custom properties are our "single source of truth"
+  for colors, spacing, typography, and other design decisions.
+  
+  Why CSS variables instead of hardcoded values?
+  → Change --color-primary once, updates EVERYWHERE
+  → Easy dark mode (just override variables)
+  → Accessible to JavaScript via getComputedStyle()
+*/
+
+@theme {
+  /* 
+    @theme is Tailwind v4's way to extend/customize the design system
+    These become Tailwind utility classes automatically!
+    --color-brand-500 → bg-brand-500, text-brand-500, border-brand-500
+  */
+
+  /* Brand Colors */
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-200: #fed7aa;
+  --color-brand-300: #fdba74;
+  --color-brand-400: #fb923c;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-700: #c2410c;
+  --color-brand-800: #9a3412;
+  --color-brand-900: #7c2d12;
+
+  /* Semantic Colors - describe PURPOSE not appearance */
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f9fafb;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-border: #e5e7eb;
+
+  /* Typography Scale */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Border Radius */
+  --radius-card: 0.75rem;
+  --radius-button: 0.5rem;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-card-hover:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/*
+  Base styles — applied to raw HTML elements
+  These are global defaults
+*/
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+    /* 
+      antialiased = smoother font rendering on Mac/retina screens
+      This is a Tailwind utility applied globally
+    */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 
+    Smooth scrolling for the whole page
+    Respects user's "reduce motion" accessibility preference
+  */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
